@@ -1,0 +1,94 @@
+
+<script type='text/javascript'src="../../header.js"></script>
+
+
+<meta charset="UTF-8">
+
+
+
+
+<style type="text/css">
+
+
+			textarea{
+				outline:none;/*去掉轮廓线*/
+				resize:none;/*规定不能拖动文本框的大小*/
+				width:100%;
+				height:400px;
+				padding:20px;/*内边距*/
+
+				border-radius:20px;
+				font-size:20px;/*字体大小*/
+				box-sizing:border-box;/*怪异盒模型  会自动重新计算盒子内容的大小 减去padding和边框的距离*/
+			}
+			input{
+				outline:none;/*去掉轮廓线*/
+				width:100%;
+				height:55px;
+				background-color:#1E90FF;
+				border:none;/*去掉边框*/
+				color:#fff;/*字体颜色*/
+				border-radius:10px;
+			}
+
+
+		</style>
+
+
+
+
+   <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">语音交互</h3>
+         <a href="./index.html"> <p class="animated fadeInDown">支持中文.英文{首页}</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+
+ <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+            <div class="panel-body" style="padding-bottom:30px;">
+                <div class="form-group">
+                <div>
+
+	<textarea class='input_box' placeholder='请输入文字....'></textarea><!--多行文本框-->
+
+
+		<input class='speech'type='submit' value='转换'>
+		<!--提交按钮-->
+
+	</div>
+
+	<!---引入插件-->
+	<script src='./tool/Voice/speeching.js'></script><!--写js代码的地方-->
+
+	<!--启用插件-->
+	<script>
+		speeching('.input_box','.speech');
+	</script>
+
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <!-- end: content -->
+
+</div>
+
+</body>
+</html>

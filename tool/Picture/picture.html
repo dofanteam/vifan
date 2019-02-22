@@ -1,0 +1,308 @@
+
+<script type='text/javascript'src="../../header.js"></script>
+
+<meta charset="UTF-8">
+
+
+
+
+
+
+  <style>
+
+.inputstyle{
+
+			    width:100%;
+				height:55px;
+				background-color:#1E90FF;
+				border:none;/*去掉边框*/
+				color:#fff;/*字体颜色*/
+				border-radius:10px;
+
+
+	font-size:26px;/*字体大小*/
+}
+</style>
+
+
+   <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">图片托管</h3>
+         <a href="./index.html"> <p class="animated fadeInDown">图片转成链接[首页]</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+
+	   <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+            <div class="panel-body" style="padding-bottom:30px;">
+            	<!--<button type="button"  class="fa-btn btn-1 btn-1e " id="test2">上传图片</button>-->
+
+
+
+    <input type="button" class="inputstyle" id="testList" value="选择图片" >
+		<li>图片保存时间无期限</li>
+  <li>请勿上传含有色情、暴力、宣扬恐怖主义的图片</li>
+	<li>请勿上传侵犯版权、未经授权的图片</li>
+	<li>请勿上传其他违反中华人民共和国法律的图片</li>
+	<li>请勿上传其他违反香港法律的图片</li>
+	<li>图片保存时间无期限</li>
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="layui-progress layui-progress-big show" lay-showpercent="true" lay-filter="demo">
+
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+	<script type="text/javascript">
+
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+		<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</div>
+<script src="./tool/Picture/layui/layui.js"></script>
+    <script src="./tool/Picture/js/clipboard.min.js"></script>
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer','upload','element'], function(){
+  var layer = layui.layer
+  ,upload = layui.upload,
+  element = layui.element,
+  $ = layui.jquery,
+  time=0,files;
+  	  var a=0;
+	  var skat=0;
+	  var jsonarray;
+	  var array=new Array();
+
+
+
+  //多图片上传
+        upload.render({
+            elem: '#test2'
+            ,url: 'https://sm.ms/api/upload'
+            ,multiple: false
+            ,field:'smfile'
+            ,before: function(obj){
+               $(".show").show();
+			   if(time==0){
+	    sso();
+	  }
+            }
+            ,done: function(res){
+
+	    time=0;
+		clearInterval(time);
+			element.progress('demo', '100%');
+
+                console.info(res)
+				if(res.code=="success"){
+
+				//图片加载成功,数据回放到服务器
+				}else{
+				layer.msg("此图片已被阻止，请联系网站管理员获取更多信息！")
+				}
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+		function  sso(){
+
+
+            //模拟loading
+            var n = 0, timer = setInterval(function(){
+                n = n + Math.random()*10|0;
+                if(n>90){
+                    n = 90;
+                    clearInterval(timer);
+
+                }
+                element.progress('demo', n+'%');
+            }, 300+Math.random()*1000);
+
+time=timer;
+        }
+
+		 $("#back-to-top").click(function(){
+                //$('body,html').animate({scrollTop:0},1000);
+        if ($('html').scrollTop()) {
+                $('html').animate({ scrollTop: 0 }, 1000);
+				$("#testList").click();
+                return false;
+            }
+            $('body').animate({ scrollTop: 0 }, 1000);
+                 return false;
+           });
+
+
+
+
+		     //多文件列表示例
+  var demoListView = $('#demoList')
+  ,uploadListIns = upload.render({
+    elem: '#testList'
+    ,url: 'https://sm.ms/api/upload'
+    ,accept: 'file'
+    ,multiple: true
+	 ,field:'smfile'
+    ,auto: false
+    ,bindAction: '#testListAction'
+    ,choose: function(obj){
+      var filess = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+	element.progress('demo', '0%');
+
+for (key in filess) {
+
+   a=a+1;
+
+}
+  skat=a;
+      //读取本地文件
+      obj.preview(function(index, file, result){
+
+
+
+        //单个重传
+
+         obj.upload(index, file);
+
+
+        //删除
+
+         // delete files[index]; //删除对应的文件
+          uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+
+      });
+    },done: function(res, index, upload){
+	a--;
+	if(a==0){
+	        	clearInterval(time);
+				time=0;
+			element.progress('demo', '100%');
+	}else{
+	var ind=skat-a;
+	var ss=100/skat*ind|0;
+	element.progress('demo', ss+'%');
+
+	}
+
+
+      if(res.code=="success"){ //上传成功
+	  if(jsonarray==null||jsonarray==undefined){
+	  var jsonstr="[]";
+	  jsonarray = eval('('+jsonstr+')');
+	  }
+	  jsonarray.push(res.data);
+		console.info(jsonarray);
+
+      }else{
+	  console.info(res);
+	  		array.push(this.files[index].name)
+console.info(array.toString());
+	  }
+	  if(a==0){
+	  var str="<div class='layui-row layui-col-space30 vip-goods-box'><p>上传成功的图片</p>";
+	  for(kays in jsonarray){
+	  if(kays=="compare"){
+
+	  }else{
+	    str=str+"<a class='layui-col-xs12 layui-col-sm4 layui-col-md2'><div class='vip-goods-list'><div class='vip-goods-footer'><button class='look layui-btn layui-btn-xs layui-bg-red flt-left '  data-url='"+jsonarray[kays].url+"'>预览</button> <button class='copy layui-btn layui-btn-xs layui-bg-red flt-right' data-url='"+jsonarray[kays].url+"'>复制</button> </div></div></a>";
+
+
+
+
+	  }
+
+	  }
+	  for(kays in jsonarray){
+	  if(kays!="compare"){
+	  delete jsonarray[kays];
+	  }
+
+	  }
+	  str=str+"<hr/><p>以下上传失败的文件<br/>"+array.toString()
+	  array.length = 0;
+console.log(array); // 输出 []，空数组，即被清空了
+	  layer.open({
+                title:'信息出来啦'
+                ,type: 1
+                //,skin: 'layui-layer-rim'
+                ,shadeClose: true
+                ,area: ['80%', '80%']
+                ,content: '<div style="padding: 20px;">'+str+'</div>'
+            });
+	  }
+	  return delete this.files[index]; //删除文件队列已经上传成功的文件
+    }
+    ,error: function(index, upload){
+     console.info("网络出现问题");
+
+    }
+  });
+
+	$(document).on('click','.look',function(){
+	var url=$(this).data('url');
+        window.open(url);
+        });
+			$(document).on('click','.copy',function(){
+			var urls=$(this).data('url');
+        	var clipboard = new ClipboardJS('.copy', {
+                                text: function() {
+                                    return urls;
+                                }
+                            });
+                            clipboard.on('success', function(e) {
+                               layer.msg("链接复制成功")
+
+                            });
+                            clipboard.on('error', function(e) {
+                                layer.alert('复制失败<br/>'+url);
+                            });
+        });
+
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+
+<script type='text/javascript'src="../../header.js"></script>
+
+
+<meta charset="UTF-8">
+
+
+
+
+
+
+
+   <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">CSS格式化</h3>
+         <a href="./index.html"> <p class="animated fadeInDown">[首页]</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+         <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+            <div class="panel-body" style="padding-bottom:30px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <style type="text/css">
+
+
+              			textarea{
+              				outline:none;/*去掉轮廓线*/
+              				resize:none;/*规定不能拖动文本框的大小*/
+              				width:100%;
+              				height:400px;
+              				padding:20px;/*内边距*/
+
+              				border-radius:20px;
+              				font-size:20px;/*字体大小*/
+              				box-sizing:border-box;/*怪异盒模型  会自动重新计算盒子内容的大小 减去padding和边框的距离*/
+              			}
+
+                    input{
+                      outline:none;/*去掉轮廓线*/
+                      width:100%;
+                      height:30px;
+                      background-color:#1E90FF;
+                      border:none;/*去掉边框*/
+                      color:#fff;/*字体颜色*/
+                      border-radius:10px;
+                      max-width:280px;
+                    }
+
+              		</style>
+
+
+
+
+
+
+
+
+
+
+	    			<!-- /工具开始 -->
+
+				    <textarea  id="code">
+
+				    </textarea>
+            <br>
+                    <input  onclick="$('code').value = CSSencode($('code').value);" value=横向排列 type=button>
+                    <input onclick="$('code').value = CSSdecode($('code').value);" value=竖向排列 type=button>
+                    <input  onclick="Empty();" value="清空结果" type="button">
+	    		</div>
+	    	</div>
+	    </div>
+
+		<script type="text/javascript">
+			function $() {
+				var elements = new Array();
+				for (var i = 0; i < arguments.length; i++) {
+					var element = arguments[i];
+					if (typeof element == 'string')
+					element = document.getElementById(element);
+					if (arguments.length == 1)
+					return element;
+					elements.push(element);
+				}
+				return elements;
+			}
+
+			function CSSencode(code){
+				code = code.replace(/\r\n/ig,'');
+				code = code.replace(/(\s){2,}/ig,'$1');
+				code = code.replace(/\t/ig,'');
+				code = code.replace(/\n\}/ig,'\}');
+				code = code.replace(/\n\{\s*/ig,'\{');
+				code = code.replace(/(\S)\s*\}/ig,'$1\}');
+				code = code.replace(/(\S)\s*\{/ig,'$1\{');
+				code = code.replace(/\{\s*(\S)/ig,'\{$1');
+				return code;
+			}
+
+			function CSSdecode(code){
+				code = code.replace(/(\s){2,}/ig,'$1');
+				code = code.replace(/(\S)\s*\{/ig,'$1 {');
+				code = code.replace(/\*\/(.[^\}\{]*)}/ig,'\*\/\n$1}');
+				code = code.replace(/\/\*/ig,'\n\/\*');
+				code = code.replace(/;\s*(\S)/ig,';\n\t$1');
+				code = code.replace(/\}\s*(\S)/ig,'\}\n$1');
+				code = code.replace(/\n\s*\}/ig,'\n\}');
+				code = code.replace(/\{\s*(\S)/ig,'\{\n\t$1');
+				code = code.replace(/(\S)\s*\*\//ig,'$1\*\/');
+				code = code.replace(/\*\/\s*([^\}\{]\S)/ig,'\*\/\n\t$1');
+				code = code.replace(/(\S)\}/ig,'$1\n\}');
+				code = code.replace(/(\n){2,}/ig,'\n');
+				code = code.replace(/:/ig,':');
+				code = code.replace(/  /ig,' ');
+				return code;
+			}
+
+			function Empty() {
+		        document.getElementById('code').value = '';
+		        document.getElementById('code').select();
+		    }
+		</script>
+    </div>
+</div>

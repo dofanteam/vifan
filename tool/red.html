@@ -1,0 +1,159 @@
+
+<script type='text/javascript'src="../header.js"></script>
+
+
+<meta charset="UTF-8">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">域名防红</h3>
+         <a href="./index.html"> <p class="animated fadeInDown">被QQ管家拦截？没事[首页]</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+
+	   <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+         <br>
+
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+    <script>
+      $(document).ready(function(){
+        $('#start').click(function(){
+          var url = $("input[id='longurl']").val();
+          var radionum = document.getElementsByName("api");
+          for(var i=0;i<radionum.length;i++){
+              if(radionum[i].checked){Gtype = radionum[i].value;}
+          }
+          if (Gtype == 'dwz' ) {
+            $.ajax({
+              type:"post",
+              url: "http://m.urlfh.cn/dwz.php",
+              dataType: "json",
+              data:"longurl="+url,
+              async:true,
+              success: function(a) {
+                  var strJson = JSON.stringify(a)
+                  var data = $.parseJSON(strJson);
+                  console.log(data);
+                  if(data.ae_url){
+                      $('#dwzdate').html(data.ae_url);
+                      GetQr(data.ae_url);
+                  }else{
+                    alert(data.msg);
+                  }
+              },
+              error: function(a) {
+                alert("失败！！");
+              }
+            });
+          }else if (Gtype == 'tj' ) {
+
+          }
+        });
+      });
+    </script>
+  </head>
+  <body class="is-loading">
+
+
+    <!-- Wrapper -->
+   <center>   <div id="wrapper">
+
+         <section id="main">
+
+            <div id="Gtype">
+              <input id="dwz" name="api" type="radio" value="dwz" checked="checked" style="display:none">
+
+
+            </div>
+            <div>
+              <input class="longurl" type="text" id="longurl" placeholder="不需要http://">
+              <input class="btn"  type="button" id="start" value="转换">
+              <p></p>
+            </div>
+            ↓↓防红短链↓↓<p id="dwzdate"><br /></p>
+
+          </section>
+
+          </section>  </center>
+
+        <!-- Footer -->
+
+      </div>
+
+    <!-- Scripts -->
+      <!--[if lte IE 8]><script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+      <script>
+        if ('addEventListener' in window) {
+          window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+          document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+      </script>
+      <script>
+        GetQr(location.protocol+'//'+location.host);
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c9b551ce2626bbd8ca5223005b4b1ffa";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        function GetQr(url){
+            var qrcode = $('#qrcode');
+            qrcode.html('');
+            qrcode.qrcode({
+                width: 200,
+                height: 200,
+                text: url
+            });
+            qrcode.removeClass('am-hide');
+        }
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

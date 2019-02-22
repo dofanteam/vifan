@@ -1,0 +1,78 @@
+
+
+<script type='text/javascript'src="../../header.js"></script>
+
+
+<meta charset="UTF-8">
+
+
+
+   <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">JS/HTML转化</h3>
+         <a href="./index.html"> <p class="animated fadeInDown">[首页]</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+         <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+            <div class="panel-body" style="padding-bottom:30px;">
+
+              <style type="text/css">
+
+
+                    textarea{
+                      outline:none;/*去掉轮廓线*/
+                      resize:none;/*规定不能拖动文本框的大小*/
+                      width:100%;
+                      max-width：200px；
+                      height:520px;
+                      padding:20px;/*内边距*/
+
+                      border-radius:20px;
+                      font-size:20px;/*字体大小*/
+                      box-sizing:border-box;/*怪异盒模型  会自动重新计算盒子内容的大小 减去padding和边框的距离*/
+                    }
+
+                    input{
+                      outline:none;/*去掉轮廓线*/
+                      width:100%;
+                      height:30px;
+                      background-color:#1E90FF;
+                      border:none;/*去掉边框*/
+                      color:#fff;/*字体颜色*/
+                      border-radius:10px;
+                      max-width:280px;
+                    }
+
+                  </style>
+
+
+
+
+
+
+
+
+
+
+                  <!-- /工具开始 --><script language="JavaScript">     function rechange(){
+                       document.getElementById('re').value=document.getElementById('oresult').value.replace(/document.writeln\("/g,"").replace(/"\);/g,"").replace(/\\\"/g,"\"").replace(/\\\'/g,"\'").replace(/\\\//g,"\/").replace(/\\\\/g,"\\")
+                       }
+                       function change(){
+                       document.getElementById('oresult2').value="document.writeln(\""+document.getElementById('osource').value.replace(/\\/g,"\\\\").replace(/\\/g,"\\/").replace(/\'/g,"\\\'").replace(/\"/g,"\\\"").split('\n').join("\");\ndocument.writeln(\"")+"\");"
+                       }
+                   </script>
+
+
+
+
+
+                   <h2>HTML转JS</h2><h3>Html源代码:</h3><textarea class="toolarea" id="osource" onfocus="change()" onkeyup="change()"></textarea><h3>转换后Js源代码:</h3><textarea class="toolarea" id="oresult2"></textarea>
+                   <hr >
+                   <h2>JS转HTML</h2><h3>Js源码:</h3><textarea class="toolarea" id="oresult" onfocus="rechange()" onkeyup="rechange()"></textarea><h3>转换后Html源代码:</h3><textarea class="toolarea" id="re"></textarea></div></div></div>
