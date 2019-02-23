@@ -1,0 +1,164 @@
+<!--**********************************************************
+Hi~~欢迎使用中/高考倒计时系统！
+这是一个非常非常轻量级的网页，虽然UI不怎么样！O(∩_∩)O哈哈~
+这个网页可以自定义：中/高考时间和誓言
+对你们学校来说科技感十足呢！
+因此我们开放了api
+调用方式：http://vifan.cn/tool/zk.html?date=时间&oath=誓言（可空）
+调用参数：
+-------------------------
+参数          例子
+date        2019-6-20
+oath        不忘初心<br>方得始终
+-------------------------
+提示：<br>是换行的意思
+当然，在oath参数里还可以使用html设置哦！
+*************************************************
+开发者：冷鱼闲风
+日期：2019-2-23
+联系QQ：2991883280
+官方网站：http://vifan.cn
+**********************************************************--!>
+<!doctype html>
+<html>
+ <head>
+ <html lang="zh-cn">
+ <meta charset="utf-8">
+  
+  <title>中/高考倒计时</title>
+  <meta name="description" content="中/高考倒计时">
+	  
+	  <Style>
+	  body{
+	  background:#FFB6C1;
+	  }
+		  .main{
+		background-color: #00ff00;
+		  width:350px;
+			  height:350px;
+			  box-shadow: 10px 10px 5px #888888;
+			  border-bottom-right-radius:2em;
+			  border-bottom-left-radius:2em;
+			  border-top-right-radius:2em;
+			  border-top-left-radius:2em;
+			  
+		  } 
+          .zksj{
+     padding-left:0.4cm;
+	
+font-size: 800%;
+}		  
+.mubiao{
+background-color: #F0E68C;
+		  width:350px;
+			  height:auto;
+			  box-shadow: 10px 10px 5px #888888;
+			  border-bottom-right-radius:2em;
+			  border-bottom-left-radius:2em;
+			  border-top-right-radius:2em;
+			  border-top-left-radius:2em;
+}
+.jl{
+  padding-left:0.4cm;
+	 padding-top:0.2cm;
+font-size: 150%;
+
+}
+	</Style>
+	  <script type="text/javascript">
+
+	  	//获取网址参数
+				function GetQueryString(name) {
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     
+     if(r!=null) {
+         return  decodeURI(r[2]);
+     } else {
+          return null;
+    }      
+}
+ 
+// 打印到控制台
+
+	console.log("你设置的时间："+GetQueryString("date"));
+	console.log("你设置的誓言："+GetQueryString("oath"));
+	
+
+	</script>
+ </head>
+ <body>
+   
+    
+<center>
+<div class="main" >
+<h3 class="jl">
+	<script type="text/javascript">
+	document.write("距离"+GetQueryString("date")+"还有");
+	</script>
+</h3>
+	<h1 id="showsectime" class="zksj"></h1>
+
+</div>	
+<br>
+	<div class="mubiao">
+	<script type="text/javascript">
+	document.write(GetQueryString("oath"));
+	</script>
+	
+	</div>
+	</center>
+	
+	
+	
+	
+
+
+
+
+
+
+<script type="text/javascript">
+	
+	
+//时间倒计时
+				function NewDate(str) {
+					str = str.split('-');
+					var date = new Date();
+					date.setUTCFullYear(str[0], str[1] - 1, str[2]);
+					date.setUTCHours(0, 0, 0, 0);
+					return date;
+				}
+				function showsectime() {
+					var birthDay =NewDate(GetQueryString("date"));
+					var today=new Date();
+					var timeold=today.getTime()-birthDay.getTime();
+					var sectimeold=timeold/1000
+					var secondsold=Math.floor(sectimeold);
+					var msPerDay=24*60*60*1000;
+					var e_daysold=timeold/msPerDay;
+					var daysold=Math.floor(e_daysold);
+					var e_hrsold=(daysold-e_daysold)*-24;
+					var hrsold=Math.floor(e_hrsold);
+					var e_minsold=(hrsold-e_hrsold)*-60;
+					var minsold=Math.floor((hrsold-e_hrsold)*-60);
+					var seconds=Math.floor((minsold-e_minsold)*-60).toString();
+										document.getElementById("showsectime").innerHTML = daysold;setTimeout(showsectime, 1000);	}
+				showsectime();
+				
+		
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+                </script>
+
+
+ </body>
+ </head>
