@@ -1,129 +1,197 @@
+
 <!--**********************************************************
 Hi~~欢迎使用中/高考倒计时系统！
 这是一个非常非常轻量级的网页，虽然UI不怎么样！O(∩_∩)O哈哈~
 这个网页可以自定义：中/高考时间和誓言
-对你们学校来说科技感十足呢！
 因此我们开放了api
 调用方式：http://vifan.cn/tool/zk.html?date=时间&oath=誓言（可空）
 调用参数：
 -------------------------
-参数          例子
-date        2019-6-20
-oath        不忘初心<br>方得始终
+参数 例子
+date 2019-6-20
+oath 不忘初心
+方得始终
 -------------------------
-提示：<br>是换行的意思
+提示：
+是换行的意思
 当然，在oath参数里还可以使用html设置哦！
 *************************************************
 开发者：冷鱼闲风
 日期：2019-2-23
 联系QQ：2991883280
 官方网站：http://vifan.cn
-**********************************************************--!>
-<!doctype html>
+**********************************************************-->
+
+
+
+<!DOCTYPE html>
 <html>
- <head>
- <html lang="zh-cn">
- <meta charset="utf-8">
-  
-  <title>中/高考倒计时</title>
-  <meta name="description" content="中/高考倒计时">
-	  
-	  <Style>
-	  body{
-	  background:#FFB6C1;
-	  }
-		  .main{
-		background-color: #00ff00;
-		  width:350px;
-			  height:350px;
-			  box-shadow: 10px 10px 5px #888888;
-			  border-bottom-right-radius:2em;
-			  border-bottom-left-radius:2em;
-			  border-top-right-radius:2em;
-			  border-top-left-radius:2em;
-			  
-		  } 
-          .zksj{
-     padding-left:0.4cm;
-	
-font-size: 800%;
-}		  
-.mubiao{
-background-color: #F0E68C;
-		  width:350px;
-			  height:auto;
-			  box-shadow: 10px 10px 5px #888888;
-			  border-bottom-right-radius:2em;
-			  border-bottom-left-radius:2em;
-			  border-top-right-radius:2em;
-			  border-top-left-radius:2em;
-}
-.jl{
-  padding-left:0.4cm;
-	 padding-top:0.2cm;
-font-size: 150%;
+	<head>
 
-}
-	</Style>
-	  <script type="text/javascript">
+<base href="http://vifan.cn/" />
+		<title>
+ 中/高考倒计时
+		</title>
 
+
+
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <link rel='stylesheet' type='text/css' href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/bootstrap.min.css'>
+<!-- plugins -->
+<link rel='stylesheet' type='text/css' href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/plugins/font-awesome.min.css'/>
+<link rel='stylesheet' type='text/css' href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/plugins/simple-line-icons.css'/>
+<link rel='stylesheet' type='text/css' href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/plugins/animate.min.css'/>
+<link rel='stylesheet' type='text/css' href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/plugins/fullcalendar.min.css'/>
+<link href='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/css/style.css' rel='stylesheet'>
+
+<script type="text/javascript">
 	  	//获取网址参数
 				function GetQueryString(name) {
      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
-     
      if(r!=null) {
          return  decodeURI(r[2]);
      } else {
           return null;
     }      
 }
- 
 // 打印到控制台
-
 	console.log("你设置的时间："+GetQueryString("date"));
 	console.log("你设置的誓言："+GetQueryString("oath"));
-	
-
+var cscs; 
+if(GetQueryString("date")==null)
+{
+cscs=confirm("此网页需要设置参数，您还没设置，需要跳转到已设置好的网页吗？"); //在页面上弹出确认对话框
+if(cscs==true)
+{
+window.location.href='http://git.saoin.club/zk.html?date=2019-6-20&oath=不忘初心方得始终';
+}
+}
 	</script>
- </head>
- <body>
-   
-    
+      
+<style type="text/css">
+.sj {font-size: 600%}
+</style>
+
+	</head>
+
+
+
+
+<body id='mimin' class='dashboard'>
+<!-- start: Header -->
+
+
+     
+     
+     
+<!-- start: Javascript --> 
+<script src='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/js/jquery.min.js'></script> 
+<script src='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/js/jquery.ui.min.js'></script> 
+<script src='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/js/bootstrap.min.js'></script> 
+<!-- plugins --> 
+<script src='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/js/plugins/jquery.nicescroll.js'></script> 
+<!-- custom --> 
+<script src='http://www.17sucai.com/preview/179632/2018-01-22/wenj.rar/asset/js/main.js'></script> 
+<!-- end: Javascript -->
+
+
+
+
+
+  
+    <div class="col-md-12" style="padding:20px;">
+         <div class="col-md-12 padding-0 form-element">
+      <div class="col-md-12">
+       <div class="panel form-element-padding">
+
+             <div class="panel-body" style="padding-bottom:30px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <center>
-<div class="main" >
-<h3 class="jl">
+<div class="panel panel-info">
+	<div class="panel-heading">
+		
+		
+			
 	<script type="text/javascript">
 	document.write("距离"+GetQueryString("date")+"还有");
 	</script>
-</h3>
-	<h1 id="showsectime" class="zksj"></h1>
+		
+	</div>
+	<div class="panel-body">
+		<h1 id="showsectime" class="sj"></h1>
+	</div>
+	
+</div>
+</center>
 
-</div>	
-<br>
-	<div class="mubiao">
-	<script type="text/javascript">
+
+<center>
+
+	<div class="panel panel-default">
+    <div class="panel-heading">
+	  
+        <h3 class="panel-title">
+ 我们的誓言：
+        </h3>
+    </div>
+    <div class="panel-body">
+       <script type="text/javascript">
 	document.write(GetQueryString("oath"));
 	</script>
-	
-	</div>
+	    
+    </div>
+		
+</div>
 	</center>
 	
 	
-	
-	
 
-
-
-
-
-
+</center> 
 <script type="text/javascript">
-	
-	
 //时间倒计时
 				function NewDate(str) {
-					str = str.split('-');
+ str = str.split('-');
 					var date = new Date();
 					date.setUTCFullYear(str[0], str[1] - 1, str[2]);
 					date.setUTCHours(0, 0, 0, 0);
@@ -145,20 +213,6 @@ font-size: 150%;
 					var seconds=Math.floor((minsold-e_minsold)*-60).toString();
 										document.getElementById("showsectime").innerHTML = daysold;setTimeout(showsectime, 1000);	}
 				showsectime();
-				
-		
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
                 </script>
-
-
- </body>
- </head>
+</body>
+</head>
